@@ -2,6 +2,7 @@ package service;
 
 import model.Produto;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +22,19 @@ public class ProdutoService {
         return null;
     }
     public boolean cadastrarProduto(Produto produto){
-        if (buscarProdutoPorId(produto.getIdProduto()) != null){
+        if (produto == null){
+            return false;
+        }
+        if (buscarProdutoPorId(produto.getIdProduto()) != null || buscarProdutoPorId(produto.getIdProduto()) <null){
+            return false;
+        }
+        if (produto.getNomeProduto().isBlank() || produto.getNomeProduto() == null){
+            return false;
+        }
+        if (produto.getPrecoProduto() == null){
+            return false;
+        }
+        if (produto.getPrecoProduto().compareTo(BigDecimal.ZERO) <0 || produto.getQuantidadeProduto() < 0){
             return false;
         }
 

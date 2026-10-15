@@ -87,23 +87,36 @@ public class ProdutoMenu {
                 case 4:
                     System.out.println("Selecione o ID do produto que desjea adicionar: ");
                     Long idEntradaAdicionar = sc.nextLong();
-                    sc.nextLine();
                     System.out.println("Insira a quantidade que deseja adicionar: ");
                     int quantidadeEntrada = sc.nextInt();
                     boolean resultadoEntrada =  produtoService.adicionarEstoque(idEntradaAdicionar,quantidadeEntrada);
-                    if (resultadoEntrada == false){
+                    if (!resultadoEntrada){
                         System.out.println("Erro ao adicinar, tente novamente");
                     }else {
                         System.out.println("Estoque atualizado com Sucesso!");
                     }
-
-
                     break;
                 case 5:
-                    System.out.println("Retirar estoque");
+                    System.out.println("Selecione o ID do produto que desjea retirar: ");
+                    Long idEntradaRetirar = sc.nextLong();
+                    System.out.println("Insira a quantidade que deseja retirar: ");
+                    int quantidadeRetirar = sc.nextInt();
+                    boolean resultadoRetirada = produtoService.retirarEstoque(idEntradaRetirar,quantidadeRetirar);
+                    if (!resultadoRetirada){
+                        System.out.println("Erro ao retirar, tente novamente");
+                    }else {
+                        System.out.println("Item retirado do estoque!");
+                    }
                     break;
                 case 6:
-                    System.out.println("Excluir produto");
+                    System.out.println("Selecione o ID do produto que desjea excluir: ");
+                    Long idEntradaExcluir = sc.nextLong();
+                    boolean resultadoExclusao = produtoService.excluirProduto(idEntradaExcluir);
+                    if (!resultadoExclusao){
+                        System.out.println("Erro ao excluir, tente novamente");
+                    }else {
+                        System.out.println("Item exluido com sucesso!");
+                    }
                     break;
                 case 0:
                     executando = false;
